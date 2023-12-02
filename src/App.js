@@ -1,7 +1,13 @@
 import './App.css';
+import Forms from './Forms';
 
+import Layout from './Layout';
 function App() {
-  return <div className='App'>Hello Local storage</div>;
+  return (
+    <Layout>
+      <Forms />
+    </Layout>
+  );
 }
 
 export default App;
