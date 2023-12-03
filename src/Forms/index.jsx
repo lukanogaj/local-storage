@@ -2,32 +2,44 @@ import styles from './index.module.scss';
 import { useState, useEffect } from 'react';
 
 const Forms = () => {
-  const [items, setItems] = useState([]);
+  // Set of data
+  const [name, setName] = useState('');
 
-  // useEffect do locale storage
+  // const [items, setItems] = useState([]);
+
+  // // useEffect do locale storage
   useEffect(() => {
-    localStorage.setItem('dataKey', JSON.stringify(items));
-  }, [items]);
-  ////////////////////////
+    // storing Input name
+    localStorage.setItem('name', JSON.stringify(name));
+  }, [name]);
+
+  // ////////////////////////
+
+  console.log(localStorage.getItem('name'));
 
   return (
     <div className={styles.hero}>
       <h1>Locale Storage</h1>
-      <div className={styles.forms}>
-        <label type='text' htmlFor=''>
-          {' '}
-          Name
-        </label>
-        <input type='text' />
-        <label htmlFor=''> Surname</label>
-        <input type='text' />
+      <form className={styles.forms}>
+        <span>Name</span>
+        <input
+          type='text'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder='Name'
+        />
+        {/* <label htmlFor=''> Surname</label>
+        <input
+          type='text'
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
         <label htmlFor=''>Age</label>
-        <input type='text' />
-
+        <input type='text' /> */}
         <button type='submit' value='submit'>
           Submit
         </button>
-      </div>
+      </form>
     </div>
   );
 };
