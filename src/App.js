@@ -1,11 +1,11 @@
 import './App.css';
-import Forms from './Forms';
+import Form from './Form';
 
 import Layout from './Layout';
 function App() {
   return (
     <Layout>
-      <Forms />
+      <Form />
     </Layout>
   );
 }
