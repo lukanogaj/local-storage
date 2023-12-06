@@ -5,8 +5,6 @@ const Form = () => {
   return (
     <div className={styles.hero}>
       <Input />
-      <Input />
-      <Input />
     </div>
   );
 };

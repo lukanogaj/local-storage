@@ -1,30 +1,33 @@
-// import { useState, useRef } from 'reacst';
+import { useState, useEffect } from 'react';
 import styles from './index.module.scss';
-import { labels } from '../../data';
+// import { labels } from '../../data';
 
 const Input = () => {
-  // const inputRef = useRef(null);
+  const [userName, setUserName] = useState(() => {
+    const savedItem = localStorage.getItem('userName');
+    const parsedItem = JSON.parse(savedItem);
+    return parsedItem || '';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('Username', JSON.stringify(userName));
+  }, [userName]);
 
   return (
-    <form className={styles.forms}>
-      {labels.map((label) => (
-        <div>
-          <span></span>
-          <input type='text' placeholder={label} label={label} />
-        </div>
-      ))}
-      {/* <label htmlFor=''> Surname</label>
+    <div>
+      <form className={styles.forms} onSubmit={(e) => e.preventDefault()}>
+        <span>Name</span>
         <input
           type='text'
           value={userName}
+          placeholder='Name'
           onChange={(e) => setUserName(e.target.value)}
         />
-        <label htmlFor=''>Age</label>
-        <input type='text' /> */}
-      <button type='submit' value='submit'>
-        Submit
-      </button>
-    </form>
+        <button type='submit' value='submit'>
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 
