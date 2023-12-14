@@ -1,32 +1,57 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 import styles from './index.module.scss';
-import Form from '..';
 
-const FormData = [
-  { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
-  { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
-  { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
-];
+// const FormData = [
+//   { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
+//   { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
+//   { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
+// ];
 
 const Input = () => {
-  const data = useRef();
-  const handleClick = (e) => {
-    console.log(data.current.value, 'initial value');
-    localStorage.setItem('inputValue', data.current.value);
-    // e.preventDafult();
-  };
-  console.log(localStorage.getItem('inputValue'), '****');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [age, setAge] = useState('');
+  // const [data, setData] = useState(false);
+  const [editData, setEditData] = useState(false);
+  console.log(editData);
+
   return (
     <div className={styles.form}>
-      {FormData.map((item, index) => (
-        <form key={index}>
-          <span>{item.name}</span>
-          <input type='text' placeholder={item.name} ref={data} />
-          <button type='submit' onClick={handleClick}>
-            {item.button}
-          </button>
-        </form>
-      ))}
+      <form>
+        <div>
+          <span>Name </span>
+          <input
+            type='text'
+            name='name'
+            placeholder='Name'
+            onChange={(e) => setName(e.target.value)}
+            value={editData ? name : ''}
+          />
+          <button type='submit'>Submit</button>
+        </div>
+        <div>
+          <span>Surname </span>
+          <input
+            type='text'
+            name='surname'
+            placeholder='Surname'
+            onChange={(e) => setSurname(e.target.value)}
+            value={editData ? surname : ''}
+          />
+          <button type='submit'>Submit</button>
+        </div>
+        <div>
+          <span>Age</span>
+          <input
+            type='text'
+            name='age'
+            placeholder='Age'
+            onChange={(e) => setAge(e.target.value)}
+            value={editData ? age : ''}
+          />
+          <button type='submit'>Submit</button>
+        </div>
+      </form>
     </div>
   );
 };
