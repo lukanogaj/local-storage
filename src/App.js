@@ -1,5 +1,5 @@
 import './App.css';
-import Form from './Form';
+import Form from './componenets/Form';
 
 import Layout from './Layout';
 function App() {

@@ -12,10 +12,10 @@ const Input = () => {
   const [surname, setSurname] = useState('');
   const [age, setAge] = useState('');
   const [data, setData] = useState(false);
-  const [editData, setEditData] = useState(true);
-  console.log(editData);
+  // const [editData, setEditData] = useState(true);
+  // console.log(editData);
 
-  ///  Function for submit form
+  ///  Function for submit form and store in local storage
   const handleSubbmission = () => {
     localStorage.clear();
     let userData = {
@@ -29,19 +29,19 @@ const Input = () => {
   };
 
   let userInfo = '';
-  function toggleGetData() {
+  const toggleGetData = () => {
     setData(true);
     userInfo = JSON.parse(localStorage.getItem('userInfo'));
     console.log(userInfo.Email);
     setName(userInfo.Name);
     setSurname(userInfo.Surname);
     setAge(userInfo.Age);
-  }
+  };
 
-  function toggleEditData() {
-    setEditData(true);
-    console.log(editData);
-  }
+  // function toggleEditData() {
+  //   setEditData(true);
+  //   console.log(editData);
+  // }
   return (
     <div className={styles.form}>
       <div>
@@ -52,9 +52,8 @@ const Input = () => {
             name='name'
             placeholder='Name'
             onChange={(e) => setName(e.target.value)}
-            value={editData ? name : ''}
+            // value={editData ? name : ''}
           />
-          <button type='submit'>Submit</button>
         </div>
         <div>
           <span>Surname </span>
@@ -63,9 +62,8 @@ const Input = () => {
             name='surname'
             placeholder='Surname'
             onChange={(e) => setSurname(e.target.value)}
-            value={editData ? surname : ''}
+            // value={editData ? surname : ''}
           />
-          <button type='submit'>Submit</button>
         </div>
         <div>
           <span>Age</span>
@@ -74,7 +72,7 @@ const Input = () => {
             name='age'
             placeholder='Age'
             onChange={(e) => setAge(e.target.value)}
-            value={editData ? age : ''}
+            // value={editData ? age : ''}
           />
           <button type='submit' onClick={handleSubbmission}>
             Submit
@@ -83,17 +81,17 @@ const Input = () => {
       </div>
 
       <div>
-        <div className='right-box' style={{ textAlign: 'center' }}>
+        <div>
           <button style={{ marginRight: '5px' }} onClick={toggleGetData}>
             Get Data
           </button>
-          <button onClick={toggleEditData}>Edit Data</button>
+          {/* <button onClick={toggleEditData}>Edit Data</button> */}
           {data && (
             <>
-              <div className='data'>
+              <div className={styles.data}>
                 <div> Name - {name}</div>
-                <div> Email - {surname}</div>
-                <div> Number - {age}</div>
+                <div> Surname - {surname}</div>
+                <div> Age - {age}</div>
               </div>
             </>
           )}
