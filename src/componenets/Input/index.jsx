@@ -1,23 +1,18 @@
 import { useState } from 'react';
 import styles from './index.module.scss';
+import PropTypes from 'prop-types';
 
-// const FormData = [
-//   { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
-//   { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
-//   { name: 'Name', surname: 'surname', age: 'age', button: 'Submit' },
-// ];
-
-const Input = () => {
+const Input = (props) => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [age, setAge] = useState('');
-  const [data, setData] = useState(false);
-  // const [editData, setEditData] = useState(true);
+  // const [data, setData] = useState(false);
+  // const [editData, setEditData] = useSta0te(true);
   // console.log(editData);
 
   ///  Function for submit form and store in local storage
   const handleSubbmission = () => {
-    localStorage.clear();
+    // localStorage.clear();
     let userData = {
       Name: name,
       Surname: surname,
@@ -28,15 +23,15 @@ const Input = () => {
     window.location.reload();
   };
 
-  let userInfo = '';
-  const toggleGetData = () => {
-    setData(true);
-    userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    console.log(userInfo.Email);
-    setName(userInfo.Name);
-    setSurname(userInfo.Surname);
-    setAge(userInfo.Age);
-  };
+  // let userInfo = '';
+  // const toggleGetData = () => {
+  //   setData(true);
+  //   userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+  //   setName(userInfo.Name);
+  //   setSurname(userInfo.Surname);
+  //   setAge(userInfo.Age);
+  // };
 
   // function toggleEditData() {
   //   setEditData(true);
@@ -49,56 +44,39 @@ const Input = () => {
           <span>Name </span>
           <input
             type='text'
-            name='name'
+            // name={name}
             placeholder='Name'
             onChange={(e) => setName(e.target.value)}
-            // value={editData ? name : ''}
           />
         </div>
         <div>
           <span>Surname </span>
           <input
             type='text'
-            name='surname'
+            // name={surname}
             placeholder='Surname'
             onChange={(e) => setSurname(e.target.value)}
-            // value={editData ? surname : ''}
           />
         </div>
         <div>
           <span>Age</span>
           <input
             type='text'
-            name='age'
+            name={age}
             placeholder='Age'
             onChange={(e) => setAge(e.target.value)}
-            // value={editData ? age : ''}
           />
           <button type='submit' onClick={handleSubbmission}>
             Submit
           </button>
         </div>
       </div>
-
-      <div>
-        <div>
-          <button style={{ marginRight: '5px' }} onClick={toggleGetData}>
-            Get Data
-          </button>
-          {/* <button onClick={toggleEditData}>Edit Data</button> */}
-          {data && (
-            <>
-              <div className={styles.data}>
-                <div> Name - {name}</div>
-                <div> Surname - {surname}</div>
-                <div> Age - {age}</div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
     </div>
   );
+};
+
+Input.propTypes = {
+  setName: PropTypes.func,
 };
 
 export default Input;
