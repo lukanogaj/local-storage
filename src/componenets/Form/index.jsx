@@ -102,15 +102,7 @@ const Input = () => {
             placeholder='41'
             onChange={(e) => setAge(e.target.value)}
           />
-          {/* <button type='submit' disabled={!name} onClick={handleSubbmission}>
-            Submit
-          </button> */}
         </div>
-        {/* <div>
-          <button type='submit' disabled={!name} onClick={handleSubbmission}>
-            Submit
-          </button>
-        </div> */}
       </div>
       <div>
         <button type='submit' disabled={!name} onClick={handleSubbmission}>
