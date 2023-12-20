@@ -4,22 +4,21 @@ import { useState, useEffect } from 'react';
 const Form = ({ toggleGetData }) => {
   return (
     <div className={styles.hero}>
-      <Heading />
-      <Input toggleGetData={toggleGetData} />
+      <Heading toggleGetData={toggleGetData} />
+      <Input />
     </div>
   );
 };
 
-// The top div with the heading and stored data
 const Heading = () => {
   // const [data, setData] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [age, setAge] = useState('');
-  // const [data, setData] = useState('');
 
   let userInfo = '';
   const toggleGetData = () => {
+    // setData(true);
     userInfo = JSON.parse(localStorage.getItem('userInfo'));
     setName(userInfo.Name);
     setSurname(userInfo.Surname);
@@ -36,11 +35,9 @@ const Heading = () => {
     <div className={styles.heading}>
       <h2>User Info</h2>
       <div>
-        <div>
-          <div>{name}</div>
-          <div> {surname}</div>
-          <div> {age}</div>
-        </div>
+        <div> {name}</div>
+        <div> {surname}</div>
+        <div> {age}</div>
       </div>
     </div>
   );
@@ -55,7 +52,7 @@ const Input = () => {
 
   ///  Function for submit form and store in local storage
   const handleSubbmission = () => {
-    localStorage.clear('userInfo');
+    localStorage.clear();
     let userData = {
       Name: name,
       Surname: surname,
@@ -87,7 +84,7 @@ const Input = () => {
           <span>Surname </span>
           <input
             type='text'
-            // name={surname}
+            // surname={surname}
             placeholder='Surname'
             onChange={(e) => setSurname(e.target.value)}
           />
@@ -96,16 +93,11 @@ const Input = () => {
           <span>Age</span>
           <input
             type='text'
-            name={age}
+            // age={age}
             placeholder='Age'
             onChange={(e) => setAge(e.target.value)}
           />
-          <button
-            type='submit'
-            onClick={() => {
-              handleSubbmission();
-            }}
-          >
+          <button type='submit' disabled={!name} onClick={handleSubbmission}>
             Submit
           </button>
         </div>
