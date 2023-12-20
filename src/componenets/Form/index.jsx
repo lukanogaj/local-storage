@@ -11,14 +11,12 @@ const Form = ({ toggleGetData }) => {
 };
 
 const Heading = () => {
-  // const [data, setData] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [age, setAge] = useState('');
 
   let userInfo = '';
   const toggleGetData = () => {
-    // setData(true);
     userInfo = JSON.parse(localStorage.getItem('userInfo'));
     setName(userInfo.Name);
     setSurname(userInfo.Surname);
@@ -34,10 +32,17 @@ const Heading = () => {
   return (
     <div className={styles.heading}>
       <h2>User Info</h2>
-      <div>
-        <div> {name}</div>
-        <div> {surname}</div>
-        <div> {age}</div>
+      <div className={styles.userData}>
+        <div className={styles.data}>
+          <label>Name:</label> <span>{name}</span>
+        </div>
+        <div className={styles.data}>
+          {' '}
+          <label>Surname:</label> <span>{surname}</span>
+        </div>
+        <div className={styles.data}>
+          <label>Age:</label> <span>{age}</span>
+        </div>
       </div>
     </div>
   );
@@ -71,36 +76,46 @@ const Input = () => {
   return (
     <div className={styles.form}>
       <div>
-        <div>
-          <span>Name </span>
+        <div className={styles.enteredDate}>
+          <span> Name</span>
           <input
             type='text'
             // name={name}
-            placeholder='Name'
+            placeholder='John'
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div>
+        <div className={styles.enteredDate}>
           <span>Surname </span>
           <input
             type='text'
             // surname={surname}
-            placeholder='Surname'
+            placeholder='Handsome'
             onChange={(e) => setSurname(e.target.value)}
           />
         </div>
-        <div>
+        <div className={styles.enteredDate}>
           <span>Age</span>
           <input
             type='text'
             // age={age}
-            placeholder='Age'
+            placeholder='41'
             onChange={(e) => setAge(e.target.value)}
           />
+          {/* <button type='submit' disabled={!name} onClick={handleSubbmission}>
+            Submit
+          </button> */}
+        </div>
+        {/* <div>
           <button type='submit' disabled={!name} onClick={handleSubbmission}>
             Submit
           </button>
-        </div>
+        </div> */}
+      </div>
+      <div>
+        <button type='submit' disabled={!name} onClick={handleSubbmission}>
+          Submit
+        </button>
       </div>
     </div>
   );
