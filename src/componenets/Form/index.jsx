@@ -31,22 +31,26 @@ const Heading = () => {
 
   return (
     <div className={styles.heading}>
-      <h2>User Info</h2>
-      <div className={styles.userData}>
-        <div className={styles.data}>
-          <label>Name:</label> <span>{name}</span>
+      <div>
+        <h2 className={styles.head}>User Info</h2>
+      </div>
+
+      <div className={styles.data}>
+        <div className={styles.user}>
+          <label htmlFor=''> Name:</label>
+          <label htmlFor=''> Surname:</label>
+          <label htmlFor=''> Age:</label>
         </div>
-        <div className={styles.data}>
-          {' '}
-          <label>Surname:</label> <span>{surname}</span>
-        </div>
-        <div className={styles.data}>
-          <label>Age:</label> <span>{age}</span>
+        <div className={styles.userData}>
+          <div>{name}</div>
+          <div>{surname}</div>
+          <div>{age}</div>
         </div>
       </div>
     </div>
   );
 };
+/////////////////////////
 
 // Input div with all the data to submit
 const Input = () => {
@@ -77,7 +81,7 @@ const Input = () => {
     <div className={styles.form}>
       <div>
         <div className={styles.enteredDate}>
-          <span> Name</span>
+          <div> Name</div>
           <input
             type='text'
             // name={name}
