@@ -81,7 +81,7 @@ const Input = () => {
     <div className={styles.form}>
       <div>
         <div className={styles.enteredDate}>
-          <div> Name</div>
+          <span> Name</span>
           <input
             type='text'
             // name={name}
