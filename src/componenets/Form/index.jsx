@@ -37,9 +37,9 @@ const Heading = () => {
 
       <div className={styles.data}>
         <div className={styles.user}>
-          <label htmlFor=''> Name:</label>
-          <label htmlFor=''> Surname:</label>
-          <label htmlFor=''> Age:</label>
+          <div> Name:</div>
+          <div> Surname:</div>
+          <div> Age:</div>
         </div>
         <div className={styles.userData}>
           <div>{name}</div>
