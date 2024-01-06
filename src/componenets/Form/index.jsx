@@ -1,5 +1,6 @@
 import styles from './index.module.scss';
 import { useState, useEffect } from 'react';
+import Heading from '../Heading';
 
 const Form = ({ toggleGetData }) => {
   return (
@@ -10,50 +11,6 @@ const Form = ({ toggleGetData }) => {
   );
 };
 
-const Heading = () => {
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [age, setAge] = useState('');
-  // const [data,setData] = useState(false)
-
-  let userInfo = '';
-  function toggleGetData ()  {
-    // setData(true)
-    userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    setName(userInfo.Name);
-    setSurname(userInfo.Surname);
-    setAge(userInfo.Age);
-  };
-
-  ///  try to use useEffect to show data back
-
-  useEffect(() => {
-    toggleGetData();
-  });
-
-  return (
-    
-    <div className={styles.heading}>
-      <div>
-        <h2 className={styles.head}>User Info</h2>
-      </div>
-
-      <div className={styles.data}>
-        <div className={styles.user}>
-          <div> Name:</div>
-          <div> Surname:</div>
-          <div> Age:</div>
-        </div>
-        <div className={styles.userData}>
-          <div>{name}</div>
-          <div>{surname}</div>
-          <div>{age}</div>
-        </div>
-      </div>
-    </div>
-    
-  );
-};
 /////////////////////////
 
 // Input div with all the data to submit

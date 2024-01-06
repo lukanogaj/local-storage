@@ -1,43 +1,48 @@
-// import { useState } from 'react';
-// import styles from './index.module.scss';
-// import PropTypes from 'prop-types';
+import { useState,useEffect } from 'react';
+import styles from './index.module.scss';
 
-// const Heading = ({ name, surname, age, setName, setSurname, setAge }) => {
-//   const [data, setData] = useState('');
 
-//   let userInfo = '';
-//   const toggleGetData = () => {
-//     setData(true);
-//     userInfo = JSON.parse(localStorage.getItem('userInfo'));
+const Heading = () => {
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [age, setAge] = useState('');
 
-//     setName(userInfo.Name);
-//     setSurname(userInfo.Surname);
-//     setAge(userInfo.Age);
-//   };
-//   return (
-//     <div className={styles.heading}>
-//       <h2>User Info</h2>
-//       <div>
-//         <button style={{ marginRight: '5px' }} onClick={toggleGetData}>
-//           Get Data
-//         </button>
-//         {/* <button onClick={toggleEditData}>Edit Data</button> */}
-//         {data && (
-//           <>
-//             <div to>
-//               <div>{name}</div>
-//               <div> {surname}</div>
-//               <div> {age}</div>
-//             </div>
-//           </>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
+  let userInfo = '';
+  function toggleGetData ()  {
+    userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    setName(userInfo.Name);
+    setSurname(userInfo.Surname);
+    setAge(userInfo.Age);
+  };
 
-// Heading.propTypes = {
-//   setName: PropTypes.func,
-// };
+  ///  try to use useEffect to show data back
 
-// export default Heading;
+  useEffect(() => {
+    toggleGetData();
+  });
+
+  return (
+    
+    <div className={styles.heading}>
+      <div>
+        <h2 className={styles.head}>User Info</h2>
+      </div>
+
+      <div className={styles.data}>
+        <div className={styles.user}>
+          <div> Name:</div>
+          <div> Surname:</div>
+          <div> Age:</div>
+        </div>
+        <div className={styles.userData}>
+          <div>{name}</div>
+          <div>{surname}</div>
+          <div>{age}</div>
+        </div>
+      </div>
+    </div>
+    
+  );
+};
+
+export default Heading;
