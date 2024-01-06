@@ -14,9 +14,11 @@ const Heading = () => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [age, setAge] = useState('');
+  // const [data,setData] = useState(false)
 
   let userInfo = '';
-  const toggleGetData = () => {
+  function toggleGetData ()  {
+    // setData(true)
     userInfo = JSON.parse(localStorage.getItem('userInfo'));
     setName(userInfo.Name);
     setSurname(userInfo.Surname);
@@ -30,6 +32,7 @@ const Heading = () => {
   });
 
   return (
+    
     <div className={styles.heading}>
       <div>
         <h2 className={styles.head}>User Info</h2>
@@ -48,6 +51,7 @@ const Heading = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 /////////////////////////
@@ -74,6 +78,7 @@ const Input = () => {
   };
 
   ////////////////////////////
+
 
   // Function to get items back and show in divs
 
