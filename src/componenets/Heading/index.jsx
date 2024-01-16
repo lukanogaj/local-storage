@@ -9,9 +9,9 @@ const Heading = () => {
 	let userInfo = "";
 	function toggleGetData() {
 		userInfo = JSON.parse(localStorage.getItem("userInfo"));
-		setName(userInfo.Name);
-		setSurname(userInfo.Surname);
-		setAge(userInfo.Age);
+		setName(userInfo?.Name);
+		setSurname(userInfo?.Surname);
+		setAge(userInfo?.Age);
 	}
 
 	///  try to use useEffect to show data back
@@ -28,9 +28,9 @@ const Heading = () => {
 
 			<div className={styles.data}>
 				<div className={styles.user}>
-					<div> Name - </div>
-					<div> Surname- </div>
-					<div> Age - </div>
+					<div>Name</div>
+					<div>Surname</div>
+					<div>Age</div>
 				</div>
 				<div className={styles.userData}>
 					<div>{name}</div>

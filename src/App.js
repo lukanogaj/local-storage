@@ -1,13 +1,13 @@
-import './App.css';
-import Form from './componenets/Form';
+import "./App.css";
+import Form from "./componenets/Form";
 
-import Layout from './Layout';
+import Layout from "./Layout";
 function App() {
-  return (
-    <Layout>
-      <Form />
-    </Layout>
-  );
+	return (
+		<Layout>
+			<Form />
+		</Layout>
+	);
 }
 
 export default App;

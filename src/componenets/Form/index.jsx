@@ -1,6 +1,7 @@
 import styles from "./index.module.scss";
-import { useState, useEffect } from "react";
-import { Cookies } from "react-cookie";
+import { useState } from "react";
+import { Cookies, useCookies } from "react-cookie";
+
 import Heading from "../Heading";
 
 const Form = ({ toggleGetData }) => {
@@ -19,7 +20,8 @@ const Input = () => {
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [age, setAge] = useState("");
-	// const [data, setData] = useState('');
+	///// State for the cookies
+	const [cookies, setCookie] = useCookies(["user"]);
 
 	///  Function for submit form and store in local storage
 	const handleSubbmission = () => {
@@ -29,24 +31,17 @@ const Input = () => {
 			Surname: surname,
 			Age: age,
 		};
-
+		// Function to set the cookies
+		const handleCookie = () => {
+			setCookie("userData", JSON.stringify(userData), { path: "/" });
+		};
+		handleCookie();
 		localStorage.setItem("userInfo", JSON.stringify(userData));
 		alert("Data recorded");
 		window.location.reload();
-
-		window.addEventListener(
-			"beforeunload",
-			function (e) {
-				this.localStorage.clear();
-			},
-			false
-		);
 	};
 
-	////////////////////////////
-	// Function to set cookies
-
-	// Function to get items back and show in divs
+	// Function to get items back and show in heading
 
 	return (
 		<div className={styles.form}>
@@ -55,7 +50,6 @@ const Input = () => {
 					<span> Name</span>
 					<input
 						type="text"
-						// name={name}
 						placeholder="John"
 						onChange={(e) => setName(e.target.value)}
 					/>
@@ -64,7 +58,6 @@ const Input = () => {
 					<span>Surname </span>
 					<input
 						type="text"
-						// surname={surname}
 						placeholder="Handsome"
 						onChange={(e) => setSurname(e.target.value)}
 					/>
@@ -73,7 +66,6 @@ const Input = () => {
 					<span>Age</span>
 					<input
 						type="text"
-						// age={age}
 						placeholder="41"
 						onChange={(e) => setAge(e.target.value)}
 					/>
