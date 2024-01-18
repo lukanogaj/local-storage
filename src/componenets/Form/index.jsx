@@ -20,7 +20,7 @@ const Input = () => {
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [age, setAge] = useState("");
-	///// State for the cookies
+	///// States for the cookies and  query parametres
 	const [cookies, setCookie] = useCookies(["user"]);
 
 	///  Function for submit form and store in local storage
@@ -31,6 +31,29 @@ const Input = () => {
 			Surname: surname,
 			Age: age,
 		};
+		console.log(typeof userData);
+		// console.log(JSON.stringify(userData));
+
+		/////////////////////////////
+		// Base 64
+
+		// Enocode into 64 and change javascript object into JSON object
+		const jasonObject = JSON.stringify(userData);
+		console.log(jasonObject);
+		///
+		const base64DataEncode = btoa(userData);
+		console.log(typeof base64DataEncode);
+		// Decode form 64
+		const base64DataDecode = atob(base64DataEncode);
+		console.log(base64DataDecode);
+		// URL Search Params
+		const searchParams = new URLSearchParams();
+		Object.keys(jasonObject).forEach((key) =>
+			searchParams.append(key, jasonObject[key])
+		);
+
+		console.log(searchParams.toString());
+		// console.log(userData);
 		// Function to set the cookies
 		const handleCookie = () => {
 			setCookie("userData", JSON.stringify(userData), { path: "/" });
