@@ -36,25 +36,25 @@ const Input = () => {
 
 		/////////////////////////////
 		// Base 64
-
-		// Enocode into 64 and change javascript object into JSON object
+		// Get user data from form
 		const jasonObject = JSON.stringify(userData);
 		console.log(jasonObject);
 		///
-		const base64DataEncode = btoa(userData);
-		console.log(typeof base64DataEncode);
-		// Decode form 64
-		const base64DataDecode = atob(base64DataEncode);
-		console.log(base64DataDecode);
-		// URL Search Params
+		// Encode into base64
+		const base64DataEncode = btoa(jasonObject);
+		console.log(base64DataEncode);
+		// Add it as query paremeter user_data
 		const searchParams = new URLSearchParams();
 		Object.keys(jasonObject).forEach((key) =>
 			searchParams.append(key, jasonObject[key])
 		);
+		console.log(searchParams);
+		// Decode form 64
+		// const base64DataDecode = atob(JSON.parse(jasonObject));
+		// console.log(jasonObject);
+		// Load user data form decoded object
 
 		console.log(searchParams.toString());
-		// console.log(userData);
-		// Function to set the cookies
 		const handleCookie = () => {
 			setCookie("userData", JSON.stringify(userData), { path: "/" });
 		};
