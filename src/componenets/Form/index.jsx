@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Cookies, useCookies } from "react-cookie";
 
 import Heading from "../Heading";
+import { type } from "@testing-library/user-event/dist/type";
 
 const Form = ({ toggleGetData }) => {
 	return (
@@ -42,19 +43,23 @@ const Input = () => {
 		///
 		// Encode into base64
 		const base64DataEncode = btoa(jasonObject);
-		console.log(base64DataEncode);
 		// Add it as query paremeter user_data
 		const searchParams = new URLSearchParams();
-		Object.keys(jasonObject).forEach((key) =>
-			searchParams.append(key, jasonObject[key])
-		);
+		searchParams.append("userData", base64DataEncode);
 		console.log(searchParams);
-		// Decode form 64
-		// const base64DataDecode = atob(JSON.parse(jasonObject));
+		const params = searchParams.toString();
+		console.log(params);
+		// Decode form 64 read the values from query param
+		const jasonObjectconvert = JSON.parse(params);
+		console.log(jasonObjectconvert);
+		// const paramsIntoJson = JSON.parse(params);
+		// console.log(paramsIntoJson);
+		// const base64Decode = atob(paramsIntoJson);
+		// console.log(base64Decode);
+		// console.log(searchParams.has("searchParams"));
 		// console.log(jasonObject);
 		// Load user data form decoded object
 
-		console.log(searchParams.toString());
 		const handleCookie = () => {
 			setCookie("userData", JSON.stringify(userData), { path: "/" });
 		};
