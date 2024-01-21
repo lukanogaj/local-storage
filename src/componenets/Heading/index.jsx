@@ -14,7 +14,6 @@ const Heading = () => {
 		setAge(userInfo?.Age);
 	}
 
-
 	useEffect(() => {
 		toggleGetData();
 	});
