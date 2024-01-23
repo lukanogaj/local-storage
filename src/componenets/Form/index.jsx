@@ -1,8 +1,7 @@
 import styles from "./index.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Cookies, useCookies } from "react-cookie";
-
-import Heading from "../Heading";
+// import Heading from "../Heading";
 
 const Form = ({ toggleGetData }) => {
 	return (
@@ -12,14 +11,53 @@ const Form = ({ toggleGetData }) => {
 		</div>
 	);
 };
+/////////////////////
+// Heading with using the Json object
 
-/////////////////////////
+const Heading = () => {
+	const [name, setName] = useState("");
+	const [surname, setSurname] = useState("");
+	const [age, setAge] = useState("");
 
+	let userInfo = "";
+	function toggleGetData() {
+		userInfo = JSON.parse(localStorage.getItem("userInfo"));
+		setName(userInfo?.Name);
+		setSurname(userInfo?.Surname);
+		setAge(userInfo?.Age);
+	}
+
+	useEffect(() => {
+		toggleGetData();
+	});
+
+	return (
+		<div className={styles.heading}>
+			<div>
+				<h2 className={styles.head}>User Info</h2>
+			</div>
+
+			<div className={styles.data}>
+				<div className={styles.user}>
+					<div>Name</div>
+					<div>Surname</div>
+					<div>Age</div>
+				</div>
+				<div className={styles.userData}>
+					<div>{name}</div>
+					<div>{surname}</div>
+					<div>{age}</div>
+				</div>
+			</div>
+		</div>
+	);
+};
 // Input div with all the data to submit
 const Input = () => {
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [age, setAge] = useState("");
+	const [userData, setUserData] = useState("");
 	///// States for the cookies and  query parametres
 	const [cookies, setCookie] = useCookies(["user"]);
 
@@ -46,8 +84,7 @@ const Input = () => {
 		const searchParams = new URLSearchParams();
 		searchParams.append("userData", base64DataEncode);
 		console.log(searchParams);
-		const params = searchParams.toString();
-		console.log(params);
+
 		// Decode form 64 read the values from query param
 
 		const myParam = searchParams.get("userData");
@@ -58,8 +95,18 @@ const Input = () => {
 		// Parse the josn Objekt
 		const parseUserData = JSON.parse(decodeUserData);
 		console.log(parseUserData);
+		// Loop through object
 
-		// console.log(paramsQuery);
+
+		// const loopObject = () => {
+		// 	Object.keys(parseUserData).forEach((key) => parseUserData[key]);
+		// };
+
+		// console.log(
+		// 	Object.keys(parseUserData).forEach((key) => parseUserData[key])
+		// );
+
+		// console.log(loopObject());
 
 		////////////////////////////////////
 		const handleCookie = () => {

@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import styles from "./index.module.scss";
 
-const Heading = () => {
-	const [name, setName] = useState("");
-	const [surname, setSurname] = useState("");
-	const [age, setAge] = useState("");
+const HeadingJson = () => {
+	// const [name, setName] = useState("");
+	// const [surname, setSurname] = useState("");
+	// const [age, setAge] = useState("");
 
-	let userInfo = "";
-	function toggleGetData() {
-		userInfo = JSON.parse(localStorage.getItem("userInfo"));
-		setName(userInfo?.Name);
-		setSurname(userInfo?.Surname);
-		setAge(userInfo?.Age);
-	}
+  // loop statetment key set as object 
 
-	useEffect(() => {
-		toggleGetData();
+	// let userInfo = "";
+	// function toggleGetData() {
+	// 	userInfo = JSON.parse(localStorage.getItem("userInfo"));
+	// 	setName(userInfo?.Name);
+	// 	setSurname(userInfo?.Surname);
+	// 	setAge(userInfo?.Age);
+	// }
+
+	// useEffect(() => {
+	// 	toggleGetData();
 	});
 
 	return (
@@ -40,4 +42,4 @@ const Heading = () => {
 	);
 };
 
-export default Heading;
+export default HeadingJson;
