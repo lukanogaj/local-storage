@@ -3,10 +3,60 @@ import { useState, useEffect } from "react";
 import { Cookies, useCookies } from "react-cookie";
 // import Heading from "../Heading";
 
-const Form = ({ toggleGetData }) => {
+const Form = () => {
+	const [name, setName] = useState("");
+	const [surname, setSurname] = useState("");
+	const [age, setAge] = useState("");
+	const [cookies, setCookie] = useCookies(["user"]);
+
+	//// Use function from sibling component
+	// const handleSubbmission = () => {
+	// 	localStorage.clear();
+	// 	let userData = {
+	// 		Name: name,
+	// 		Surname: surname,
+	// 		Age: age,
+	// 	};
+	// 	console.log(typeof userData);
+	// 	// console.log(JSON.stringify(userData));
+
+	// 	/////////////////////////////
+	// 	// Base 64
+	// 	// Get user data from form
+	// 	const jasonObject = JSON.stringify(userData);
+	// 	console.log(jasonObject);
+	// 	// Encode into base64
+	// 	const base64DataEncode = btoa(jasonObject);
+	// 	// Add it as query paremeter user_data
+	// 	const searchParams = new URLSearchParams();
+	// 	searchParams.append("userData", base64DataEncode);
+	// 	console.log(searchParams);
+	// 	// Decode form 64 read the values from query param
+	// 	const myParam = searchParams.get("userData");
+	// 	console.log(myParam);
+	// 	// Decode from base64
+	// 	const decodeUserData = atob(myParam);
+	// 	console.log(decodeUserData);
+	// 	// Parse the JSON Object
+	// 	const parseUserData = JSON.parse(decodeUserData);
+	// 	console.log(parseUserData);
+	// 	// Loop through object
+
+	// 	// console.log(loopObject());
+
+	// 	////////////////////////////////////
+	// 	const handleCookie = () => {
+	// 		setCookie("userData", JSON.stringify(userData), { path: "/" });
+	// 	};
+	// 	handleCookie();
+	// 	localStorage.setItem("userInfo", JSON.stringify(userData));
+	// 	alert("Data recorded");
+	// 	window.location.reload();
+	// };
+
 	return (
 		<div className={styles.hero}>
-			<Heading toggleGetData={toggleGetData} />
+			<Heading name={name} />
 			<Input />
 		</div>
 	);
@@ -77,34 +127,22 @@ const Input = () => {
 		// Get user data from form
 		const jasonObject = JSON.stringify(userData);
 		console.log(jasonObject);
-		///
 		// Encode into base64
 		const base64DataEncode = btoa(jasonObject);
 		// Add it as query paremeter user_data
 		const searchParams = new URLSearchParams();
 		searchParams.append("userData", base64DataEncode);
 		console.log(searchParams);
-
 		// Decode form 64 read the values from query param
-
 		const myParam = searchParams.get("userData");
 		console.log(myParam);
 		// Decode from base64
 		const decodeUserData = atob(myParam);
 		console.log(decodeUserData);
-		// Parse the josn Objekt
+		// Parse the JSON Object
 		const parseUserData = JSON.parse(decodeUserData);
 		console.log(parseUserData);
 		// Loop through object
-
-
-		// const loopObject = () => {
-		// 	Object.keys(parseUserData).forEach((key) => parseUserData[key]);
-		// };
-
-		// console.log(
-		// 	Object.keys(parseUserData).forEach((key) => parseUserData[key])
-		// );
 
 		// console.log(loopObject());
 
@@ -153,6 +191,11 @@ const Input = () => {
 					Submit
 				</button>
 			</div>
+			{/* <div>
+				{parseUserData.map((item) => (
+					<div>Hello</div>
+				))}
+			</div> */}
 		</div>
 	);
 };
