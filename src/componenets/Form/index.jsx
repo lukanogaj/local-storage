@@ -85,16 +85,16 @@ const Input = () => {
 		const searchParams = new URLSearchParams();
 		searchParams.append("userData", base64DataEncode);
 		console.log(searchParams);
-		// Decode form 64 read the values from query param
 		const myParam = searchParams.get("userData");
 		console.log(myParam);
-		// Decode from base64
-		const decodeUserData = atob(myParam);
-		console.log(decodeUserData);
-		// Parse the JSON Object
-		const parseUserData = JSON.parse(decodeUserData);
-		console.log(parseUserData);
-		// Loop through object
+		// // Decode form 64 read the values from query param
+		// // Decode from base64
+		// const decodeUserData = atob(myParam);
+		// console.log(decodeUserData);
+		// // Parse the JSON Object
+		// const parseUserData = JSON.parse(decodeUserData);
+		// console.log(parseUserData);
+		// // Loop through object
 
 		// console.log(loopObject());
 
