@@ -20,7 +20,13 @@ const Heading = () => {
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [age, setAge] = useState("");
+	///////////
 
+	const searchParams = new URLSearchParams();
+
+	const myParam = searchParams.get("userData");
+	console.log(myParam);
+  
 	let userInfo = "";
 	function toggleGetData() {
 		userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -87,7 +93,7 @@ const Input = () => {
 		console.log(searchParams);
 		const myParam = searchParams.get("userData");
 		console.log(myParam);
-		// // Decode form 64 read the values from query param
+		// Decode form 64 read the values from query param
 		// // Decode from base64
 		// const decodeUserData = atob(myParam);
 		// console.log(decodeUserData);
@@ -95,8 +101,6 @@ const Input = () => {
 		// const parseUserData = JSON.parse(decodeUserData);
 		// console.log(parseUserData);
 		// // Loop through object
-
-		// console.log(loopObject());
 
 		////////////////////////////////////
 		const handleCookie = () => {
