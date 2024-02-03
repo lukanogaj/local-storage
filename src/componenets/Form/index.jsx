@@ -1,10 +1,14 @@
 import styles from "./index.module.scss";
 import { useState, useEffect } from "react";
 import { Cookies, useCookies } from "react-cookie";
+// import { useParams } from "react-router-dom";
 // import Heading from "../Heading";
 
 const Form = () => {
-	///
+	// const [name, setName] = useState("");
+	// const [surname, setSurname] = useState("");
+	// const [age, setAge] = useState("");
+	// const [userData, setUserData] = useState("");
 
 	return (
 		<div className={styles.hero}>
@@ -20,13 +24,7 @@ const Heading = () => {
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [age, setAge] = useState("");
-	///////////
 
-	const searchParams = new URLSearchParams();
-
-	const myParam = searchParams.get("userData");
-	console.log(myParam);
-  
 	let userInfo = "";
 	function toggleGetData() {
 		userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -65,9 +63,11 @@ const Input = () => {
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [age, setAge] = useState("");
-	const [userData, setUserData] = useState("");
+	// const [userData, setUserData] = useState("");
 	///// States for the cookies and  query parametres
 	const [cookies, setCookie] = useCookies(["user"]);
+	// URL
+	const [ready, setReady] = useState(false);
 
 	///  Function for submit form and store in local storage, encode and decode in base 64
 	const handleSubmit = () => {
@@ -88,11 +88,7 @@ const Input = () => {
 		// Encode into base64
 		const base64DataEncode = btoa(jasonObject);
 		// Add it as query paremeter user_data
-		const searchParams = new URLSearchParams();
-		searchParams.append("userData", base64DataEncode);
-		console.log(searchParams);
-		const myParam = searchParams.get("userData");
-		console.log(myParam);
+
 		// Decode form 64 read the values from query param
 		// // Decode from base64
 		// const decodeUserData = atob(myParam);
@@ -111,6 +107,25 @@ const Input = () => {
 		alert("Data recorded");
 		window.location.reload();
 	};
+
+  // URL
+  const addToParam =()=>{
+    if(window){
+      const encodec
+    }
+  }
+	///URL
+	// useEffect(() => {
+	// 	const urlSearchString = window.location.search;
+	// 	const params = new URLSearchParams(urlSearchString);
+
+	// 	setName(params.get("name"));
+	// 	setSurname(params.get("surname"));
+	// 	setAge(params.get("age"));
+	// 	setUserData(true);
+	// 	console.log(params);
+	// }, []);
+	// if (!userData) return;
 
 	// Function to get items back and show in heading
 
