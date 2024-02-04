@@ -1,7 +1,6 @@
 import styles from "./index.module.scss";
 import { useState, useEffect } from "react";
 import { Cookies, useCookies } from "react-cookie";
-// import { useParams } from "react-router-dom";
 // import Heading from "../Heading";
 
 const Form = () => {
@@ -78,16 +77,26 @@ const Input = () => {
 			Age: age,
 		};
 		console.log(typeof userData);
-		// console.log(JSON.stringify(userData));
-
 		/////////////////////////////
 		// Base 64
 		// Get user data from form
 		const jasonObject = JSON.stringify(userData);
 		console.log(jasonObject);
 		// Encode into base64
-		const base64DataEncode = btoa(jasonObject);
+		// const base64DataEncode = btoa(jasonObject);
+		// console.log(base64DataEncode);
+
 		// Add it as query paremeter user_data
+		// URL
+
+		if (window) {
+			const encoded = btoa(jasonObject);
+			console.log(encoded);
+			const searchParams = new URLSearchParams(window.location.search);
+			searchParams.set("userData", encoded);
+			window.location.search = searchParams.toString();
+			console.log(searchParams);
+		}
 
 		// Decode form 64 read the values from query param
 		// // Decode from base64
@@ -108,12 +117,8 @@ const Input = () => {
 		window.location.reload();
 	};
 
-  // URL
-  const addToParam =()=>{
-    if(window){
-      const encodec
-    }
-  }
+	// URL
+
 	///URL
 	// useEffect(() => {
 	// 	const urlSearchString = window.location.search;
