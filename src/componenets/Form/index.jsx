@@ -1,6 +1,7 @@
 import styles from "./index.module.scss";
 import { useState, useEffect } from "react";
 import { Cookies, useCookies } from "react-cookie";
+
 // import Heading from "../Heading";
 
 const Form = () => {
@@ -62,11 +63,10 @@ const Input = () => {
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [age, setAge] = useState("");
-	// const [userData, setUserData] = useState("");
+	// const [userData, setUserData] = useState([userData]);
 	///// States for the cookies and  query parametres
 	const [cookies, setCookie] = useCookies(["user"]);
 	// URL
-	const [ready, setReady] = useState(false);
 
 	///  Function for submit form and store in local storage, encode and decode in base 64
 	const handleSubmit = () => {
@@ -76,12 +76,11 @@ const Input = () => {
 			Surname: surname,
 			Age: age,
 		};
-		console.log(typeof userData);
 		/////////////////////////////
 		// Base 64
 		// Get user data from form
 		const jasonObject = JSON.stringify(userData);
-		console.log(jasonObject);
+		console.log(typeof jasonObject);
 		// Encode into base64
 		// const base64DataEncode = btoa(jasonObject);
 		// console.log(base64DataEncode);
@@ -90,22 +89,13 @@ const Input = () => {
 		// URL
 
 		if (window) {
-			const encoded = btoa(jasonObject);
+			const encoded = btoa(name);
 			console.log(encoded);
 			const searchParams = new URLSearchParams(window.location.search);
 			searchParams.set("userData", encoded);
-			window.location.search = searchParams.toString();
+			window.location.search = searchParams;
 			console.log(searchParams);
 		}
-
-		// Decode form 64 read the values from query param
-		// // Decode from base64
-		// const decodeUserData = atob(myParam);
-		// console.log(decodeUserData);
-		// // Parse the JSON Object
-		// const parseUserData = JSON.parse(decodeUserData);
-		// console.log(parseUserData);
-		// // Loop through object
 
 		////////////////////////////////////
 		const handleCookie = () => {
@@ -116,21 +106,6 @@ const Input = () => {
 		alert("Data recorded");
 		window.location.reload();
 	};
-
-	// URL
-
-	///URL
-	// useEffect(() => {
-	// 	const urlSearchString = window.location.search;
-	// 	const params = new URLSearchParams(urlSearchString);
-
-	// 	setName(params.get("name"));
-	// 	setSurname(params.get("surname"));
-	// 	setAge(params.get("age"));
-	// 	setUserData(true);
-	// 	console.log(params);
-	// }, []);
-	// if (!userData) return;
 
 	// Function to get items back and show in heading
 
