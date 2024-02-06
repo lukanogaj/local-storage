@@ -6,17 +6,21 @@ const Heading = () => {
 	const [surname, setSurname] = useState("");
 	const [age, setAge] = useState("");
 
-	let userInfo = "";
-	function toggleGetData() {
-		userInfo = JSON.parse(localStorage.getItem("userInfo"));
-		setName(userInfo?.Name);
-		setSurname(userInfo?.Surname);
-		setAge(userInfo?.Age);
+	function toggleGetData(decoded) {
+		setName(decoded?.Name);
+		setSurname(decoded?.Surname);
+		setAge(decoded?.Age);
+		console.log(decoded);
 	}
 
 	useEffect(() => {
-		toggleGetData();
-	});
+		if (window) {
+			const searchParams = new URLSearchParams(window.location.search);
+			const value = searchParams.get("userData");
+			const decoded = atob(value);
+			toggleGetData(JSON.parse(decoded));
+		}
+	}, []);
 
 	return (
 		<div className={styles.heading}>

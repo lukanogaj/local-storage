@@ -20,16 +20,11 @@ const SubmitHandler = () => {
 		// Base 64
 		// Get user data from form
 		const jasonObject = JSON.stringify(userData);
-		console.log(typeof jasonObject);
-
 		if (window) {
-			console.log(window);
 			const encoded = btoa(jasonObject);
-			console.log(encoded);
 			const searchParams = new URLSearchParams(window.location.search);
 			searchParams.set("userData", encoded);
 			window.location.search = searchParams;
-			console.log(searchParams);
 		}
 
 		////////////////////////////////////
